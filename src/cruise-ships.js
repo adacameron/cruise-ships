@@ -1,14 +1,14 @@
 class Ship {
-    constructor(startingPort) {
-       this.startingPort = startingPort;
+    constructor(currentPort) {
+       this.currentPort = currentPort;
     }
 
     setSail() {
-        this.startingPort = false;
+        this.currentPort = false;
     };
 
-    dock(portName) {
-        console.log(this.dock = portName);
+    dock(currentPort) {
+        this.currentPort = currentPort;
     }
 };
 

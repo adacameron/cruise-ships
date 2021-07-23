@@ -1,6 +1,6 @@
 class Port {
-    constructor(portName) {
-    this.name = portName;
+    constructor(currentPort) {
+    this.name = currentPort;
     }
 }
 

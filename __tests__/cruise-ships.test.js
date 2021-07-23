@@ -10,33 +10,50 @@ describe('Ship constructor', () => {
     });
 });
 
-describe('startingPort', () => {
-    it('has a starting port', () => {
-        const ship = new Ship(new Port('Dover'));
 
-        expect(ship.startingPort).toEqual({name: 'Dover'});
+describe('currentPort', () => {
+    it('shows which port the ship is currently at', () => {
+        const port = new Port('Dover');
+        const ship = new Ship(port);
+
+        expect(ship.currentPort).toBe(port);
     });
 });
 
 describe('setSail', () => {
     it('enables the ship to set sail from a port', () => {
  
-        const ship = new Ship(new Port('Dover'));
+        const port =  new Port('Dover')
+        const ship = new Ship(port);
+
 
         ship.setSail();
-        expect(ship.startingPort).toBeFalsy();
+        expect(ship.currentPort).toBeFalsy();
 
     });
 });
 
+// describe('dock', () => {
+//     it('enables the ship to dock at a different port', () => {
+
+//         const ship = new Ship(new Port('Dover'));
+
+//         ship.dock(new Port('Calais'));
+
+//         expect(ship.dock).toEqual({name: 'Calais'})
+//     });
+// });
+
 describe('dock', () => {
-    it('enables the ship to dock', () => {
+    it('enables the ship to dock at a different port', () => {
 
-        const ship = new Ship(new Port('Dover'));
+        const dover = new Port('Dover');
+        const ship = new Ship(dover);
 
-        ship.dock(new Port('Calais'));
+        const calais = new Port('Calais');
+        ship.dock(calais);
 
-        expect(ship.dock).toEqual({name: 'Calais'})
+        expect(ship.currentPort).toBe(calais)
     });
 });
 
