@@ -1,8 +1,18 @@
+const Ship = require('./ships');
+
 class Port {
     constructor(currentPort) {
-    this.name = currentPort;
+        this.name = currentPort;
+        this.ships = [];
     }
-}
 
+    addShip(ship) {
+        this.ships.push(ship);
+    };
 
-module.exports = Port; 
+    removeShip(ship) {
+        this.ships.pop(ship);
+    };
+};
+
+module.exports = Port;
