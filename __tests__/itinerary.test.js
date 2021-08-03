@@ -1,21 +1,24 @@
 const Itinerary = require('../src/itinerary');
 
+let dover;
+let calais;
+let itinerary;
+
 describe('itinerary', () => {
-    it('determines the next port the ship docks at', () => {
+    describe('with ports', () => {
+        beforeEach(() => {
+            dover = jest.fn();
+            calais = jest.fn();
+            itinerary = new Itinerary([dover, calais]);
+        });
+        it('determines the next port the ship docks at', () => {
 
-        const itinerary = new Itinerary();
+            expect(itinerary).toBeInstanceOf(Itinerary);
+        });
 
-        expect(itinerary).toBeInstanceOf(Itinerary);
-    });
+        it('has a ports property', () => {
 
-    it('has a ports property', () => {
-
-        const dover = jest.fn()
-        ;
-        const calais = jest.fn()
-        ;
-        const itinerary = new Itinerary([dover, calais]);
-
-        expect(itinerary.ports).toEqual([dover, calais]);
+            expect(itinerary.ports).toEqual([dover, calais]);
+        });
     });
 });

@@ -7,7 +7,7 @@ let silverShadow;
 let vikingSky;
 
 describe('Port constuctor class', () => {
-    describe('', () => {
+    describe('with ships', () => {
         beforeEach(() => {
             dover = new Port('Dover');
             calais = new Port('Calais');
