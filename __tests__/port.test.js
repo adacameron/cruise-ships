@@ -11,9 +11,9 @@ describe('Port constuctor class', () => {
         beforeEach(() => {
             dover = new Port('Dover');
             calais = new Port('Calais');
-            ship = {};
-            silverShadow = {}
-            vikingSky = {}
+            ship = jest.fn();
+            silverShadow = jest.fn();
+            vikingSky = jest.fn();
         });
 
 
