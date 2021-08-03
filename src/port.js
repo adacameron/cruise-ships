@@ -1,5 +1,3 @@
-const Ship = require('./ships');
-
 class Port {
     constructor(currentPort) {
         this.name = currentPort;
