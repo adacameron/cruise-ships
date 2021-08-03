@@ -8,75 +8,62 @@ let itinerary;
 let ship;
 let calais;
 
+
+
 describe('Ship constructor', () => {
-   
-    beforeEach(() => {
-        dover = new Port('Dover');
-        itinerary = new Itinerary([dover]);
-        ship = new Ship(itinerary);
-    });
+    describe('with ports and an itinerary', () => {
+        beforeEach(() => {
+            dover = new Port('Dover');
+            calais = new Port('Calais');
+            itinerary = new Itinerary([dover, calais]);
+            ship = new Ship(itinerary);
+        });
 
-    it('creates a new instance of the ship object', () => {
+        it('creates a new instance of the ship object', () => {
 
-        expect(ship).toBeInstanceOf(Ship);
-    });
+            expect(ship).toBeInstanceOf(Ship);
+        });
 
-    it('gets added to port on instantiation', () => {
-        
-        expect(dover.ships).toContain(ship);
-    });
-});
+        it('gets added to port on instantiation', () => {
 
-describe('currentPort', () => {
-    
-    it('has a starting port', () => {
-        dover = new Port('Dover');
-        calais = new Port('Calais');
-        itinerary = new Itinerary([dover, calais]);
-        ship = new Ship(itinerary);
-        expect(ship.currentPort).toBe(dover);
-    });
-});
+            expect(dover.ships).toContain(ship);
+        });
 
-describe('setSail', () => {
+        describe('currentPort', () => {
+            it('has a starting port', () => {
 
-    beforeEach(() => {
-        dover = new Port('Dover');
-        calais = new Port('Calais');
-        itinerary = new Itinerary([dover, calais]);
-        ship = new Ship(itinerary);
-    });
+                expect(ship.currentPort).toBe(dover);
+            });
+        });
 
-    it('sets sail from a port', () => {
-       
-        ship.setSail();
+        describe('setSail', () => {
+            it('sets sail from a port', () => {
 
-        expect(ship.previousPort).toBe(itinerary.ports[0]);
-        expect(ship.currentPort).toBeFalsy();
-        expect(dover.ships).not.toContain(ship);
-    });
+                ship.setSail();
 
-    it('can\'t sail further than its itinerary', () => {
-        
-        ship.setSail();
-        ship.dock();
+                expect(ship.previousPort).toBe(itinerary.ports[0]);
+                expect(ship.currentPort).toBeFalsy();
+                expect(dover.ships).not.toContain(ship);
+            });
 
-        expect(() => ship.setSail()).toThrow('End of itinerary reached');
-    });
-});
+            it('can\'t sail further than its itinerary', () => {
 
-describe('dock', () => {
-    it('enables the ship to dock at a different port', () => {
+                ship.setSail();
+                ship.dock();
 
-        dover = new Port('Dover');
-        calais = new Port('Calais');
-        itinerary = new Itinerary([dover, calais]);
-        ship = new Ship(itinerary);
+                expect(() => ship.setSail()).toThrow('End of itinerary reached');
+            });
+        });
 
-        ship.setSail();
-        ship.dock();
+        describe('dock', () => {
+            it('enables the ship to dock at a different port', () => {
 
-        expect(ship.currentPort).toBe(calais);
-        expect(calais.ships).toContain(ship);
+                ship.setSail();
+                ship.dock();
+
+                expect(ship.currentPort).toBe(calais);
+                expect(calais.ships).toContain(ship);
+            });
+        });
     });
 });

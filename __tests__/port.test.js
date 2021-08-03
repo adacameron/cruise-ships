@@ -2,48 +2,52 @@ const Port = require('../src/port');
 
 let calais;
 let dover;
+let ship;
 let silverShadow;
 let vikingSky;
 
 describe('Port constuctor class', () => {
-    beforeEach(() => {
-        dover = new Port('Dover');
+    describe('', () => {
+        beforeEach(() => {
+            dover = new Port('Dover');
+            calais = new Port('Calais');
+            ship = {};
+            silverShadow = {}
+            vikingSky = {}
+        });
+
+
+        it('instantiates a new Port object', () => {
+
+            expect(dover).toBeInstanceOf(Port);
+        });
+
+        it('has a name', () => {
+
+            expect(dover.name).toBe('Dover');
+        });
     });
 
-    it('instantiates a new Port object', () => {
+    describe('addShip', () => {
+        it('adds the name of a ship when it docks at a port', () => {
 
-        expect(dover).toBeInstanceOf(Port);
+            calais.addShip(ship);
+
+            expect(calais.ships).toContainEqual(ship);
+        });
     });
 
-    it('has a name', () => {
+    describe('removeShip', () => {
+        it('removes the name of a ship when it sets sail from a port', () => {
 
-        expect(dover.name).toBe('Dover');
-    });
-});
+            calais = new Port('Calais');
+            // removing this breaks the test and I can't figure out why!
 
-describe('addShip', () => {
-    it('adds the name of a ship when it docks at a port', () => {
+            calais.addShip(silverShadow)
+            calais.addShip(vikingSky);
+            calais.removeShip(vikingSky);
 
-        calais = new Port('Calais');
-        ship = {};
-
-        calais.addShip(ship);
-
-        expect(calais.ships).toContainEqual(ship);
-    });
-});
-
-describe('removeShip', () => {
-    it('removes the name of a ship when it sets sail from a port', () => {
-
-        calais = new Port('Calais');
-        silverShadow = {}
-        vikingSky = {}
-
-        calais.addShip(silverShadow)
-        calais.addShip(vikingSky);
-        calais.removeShip(vikingSky);
-
-        expect(calais.ships).toEqual([silverShadow]);
+            expect(calais.ships).toEqual([silverShadow]);
+        });
     });
 });
