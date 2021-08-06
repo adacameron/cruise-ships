@@ -1,16 +1,26 @@
-class Port {
-    constructor(currentPort) {
-        this.name = currentPort;
-        this.ships = [];
+(function exportPort() {
+    class Port {
+        constructor(currentPort) {
+            this.name = currentPort;
+            this.ships = [];
+        }
+
+        addShip(ship) {
+            this.ships.push(ship);
+        };
+
+        removeShip(ship) {
+            this.ships.pop(ship);
+        };
+    };
+
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = Port;
+
+    } else {
+        window.Port = Port;
     }
+}
+    ());
 
-    addShip(ship) {
-        this.ships.push(ship);
-    };
 
-    removeShip(ship) {
-        this.ships.pop(ship);
-    };
-};
-
-module.exports = Port;

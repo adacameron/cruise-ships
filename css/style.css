@@ -1,0 +1,46 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  /* aligns child flex items vertically */
+  justify-content: center;
+  /* aligns child flex items horizontally */
+}
+
+#viewport {
+  width: 640px;
+  height: 256px;
+  position: relative;
+  /*  the static property positions an element within the normal flow of the document by default.
+        on its own, the relative property will do the same.
+        relative means 'relative to itself' 
+        when used with properties top, left, bottom, or right, relative 'shifts' the element according to its original position
+        i.e. top: 10px shifts its position 10 pixels down from where it would normally be 
+        here, we want items inside the viewport to base their x/y coordinates off the top left of the viewport, not the browser window*/
+  overflow-x: auto;
+  /*  overflow: controls what happens to content that breaks out of its bounds 
+                    e.g. a a 300px image in a 200px wide div will be visible by default
+                    setting the overflow value to 'hidden' would clip the image at 200px 
+        overflow-x: manipulates the horizontal overflow of content
+        auto: hides content that breaks out of its container, adding a scroll bar to view the content 
+        here, the viewport will scroll horizontally if any children exceed the width */
+  background-image: url("../images/water0.png");
+}
+
+#ports {
+  width: 0px;
+  margin-top: 96px;
+  display: flex;
+  justify-content: space-around;
+  /* distributes items evenly with equal space on both sides  */
+}
+
+#ports > .port {
+  width: 64px;
+  height: 32px;
+  background-image: url("../images/port.png");
+}
